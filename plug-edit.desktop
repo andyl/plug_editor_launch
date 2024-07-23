@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Plug-Edit Handler
+GenericName=Launch Text Editor
+Comment=Open file in editor at specific line
+Exec=/usr/local/bin/plug_editor_launch %u
+Terminal=false
+Type=Application
+Keywords=Text;editor;
+Icon=nvim
+Categories=Utility;TextEditor;
+MimeType=x-scheme-handler/plug-edit;
+NoDisplay=true
