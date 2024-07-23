@@ -1,3 +1,36 @@
-#!/usr/bin/env elixir 
+#!/usr/bin/env bash 
 
-IO.puts("Editor Launch: UNDER CONSTRUCTION")
+# plug-edit launcher 
+#
+# to run: `> plug_editor_launch plug-edit:__FILE__:__LINE__:<editor>:<terminal>`
+
+# Get variables from the `plug-edit` protocol string.
+ URI="$1"
+FILE=$(echo "$URI" | cut -d':' -f2)
+LINE=$(echo "$URI" | cut -d':' -f3)
+EDIT=$(echo "$URI" | cut -d':' -f4)
+TERM=$(echo "$URI" | cut -d':' -f5)
+REAL=$(realpath $(eval echo '$FILE'))
+
+# Write an info message to stdout
+echo "---- PLUG_EDITOR_LAUNCH ----------------------------"
+echo " URI <$URI>"
+echo "FILE <$FILE>"
+echo "REAL <$REAL>"
+echo "LINE <$LINE>"
+echo "EDIT <$EDIT>"
+echo "TERM <$TERM>"
+echo "----------------------------------------------------"
+
+# Match the Editor/Terminal pattern, and launch the editor.
+case "$EDIT,$TERM" in 
+  mousepad,*        ) mousepad --line=$LINE $REAL 2>/dev/null & ;; 
+  neovim,kitty      ) kitty bash -c "nvim +$LINE $REAL" 2>/dev/null & ;;
+  neovim,terminator ) terminator -e "nvim +$LINE $REAL" & ;;
+  neovim,xterm      ) xterm -e "nvim +$LINE $REAL" & ;;
+  vim,kitty         ) kitty bash -c "vim +$LINE $REAL" 2>/dev/null & ;;
+  vim,terminator    ) terminator -e "vim +$LINE $REAL" 2>/dev/null & ;;
+  vim,xterm         ) xterm -e "vim +$LINE $REAL" 2>/dev/null & ;;
+  vscode,*          ) code -g $REAL:$LINE --reuse-window & ;;
+  *) echo "NO MATCH"
+esac
