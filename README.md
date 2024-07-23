@@ -21,7 +21,7 @@ configuration for multiple editors and terminal emulators.
 
 ## Status
 
-As of 2024 Jul 23 Tue, this has only been tested on Xubuntu 22.04.
+As of 23-July-2024, this has only been tested on Xubuntu 22.04.
 
 - Terminals: [terminator][ttm], [kitty][tkt], [xterm][txt]
 - Editors: [vim][evm], [neovim][env], [vscode][evs], [mousepad][emp]
@@ -43,7 +43,7 @@ I don't know if this can be adapted to work on Windows.
 
 The plug-edit protocol is as follows:
 
-    plug-edit:<file>:<line_number>:<editor>:<terminal_emulator>
+    plug-edit:<absolute_file_path>:<line_number>:<editor>:<terminal_emulator>
 
 For 'console' editors like Neovim or Emacs, the terminal_emulator field is
 required. For 'native' editors like vscode or sublime, the terminal_emulator
