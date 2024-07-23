@@ -4,7 +4,8 @@
 
 # ----- Check for command-line argument
 [ "$#" -eq 1 ] || {
-  echo "Usage: $0 plug-edit:<file>:<line>:<editor>:<terminal>"
+  script=$(basename "$0")
+  echo "Usage: $script plug-edit:<file>:<line>:<editor>:<terminal>"
   exit 1
 }
 
