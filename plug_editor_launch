@@ -1,10 +1,19 @@
 #!/usr/bin/env bash 
 
-# plug-edit launcher 
-#
-# to run: `> plug_editor_launch plug-edit:__FILE__:__LINE__:<editor>:<terminal>`
+# plug_editor_launch
 
-# Get variables from the `plug-edit` protocol string.
+# ----- Check for command-line argument 
+usage() { 
+  echo -e "Usage: plug_editor_launch <protocol-string>\nprotocol format: \"plug-edit:<absolute_file_path>:<line>:<editor>:<terminal>\""
+}
+
+abort() { 
+  usage && exit 1 
+}
+
+[ "$#" != "1" ] && abort
+
+# ----- Get variables from the `plug-edit` protocol string.
  URI="$1"
 FILE=$(echo "$URI" | cut -d':' -f2)
 LINE=$(echo "$URI" | cut -d':' -f3)
@@ -12,7 +21,7 @@ EDIT=$(echo "$URI" | cut -d':' -f4)
 TERM=$(echo "$URI" | cut -d':' -f5)
 REAL=$(realpath $(eval echo '$FILE'))
 
-# Write an info message to stdout
+# ----- Write an info message to stdout
 echo "---- PLUG_EDITOR_LAUNCH ----------------------------"
 echo " URI <$URI>"
 echo "FILE <$FILE>"
@@ -22,7 +31,7 @@ echo "EDIT <$EDIT>"
 echo "TERM <$TERM>"
 echo "----------------------------------------------------"
 
-# Match the Editor/Terminal pattern, and launch the editor.
+# ----- Match the Editor/Terminal pattern, then launch the editor.
 case "$EDIT,$TERM" in 
   mousepad,*        ) mousepad --line=$LINE $REAL 2>/dev/null & ;; 
   neovim,kitty      ) kitty bash -c "nvim +$LINE $REAL" 2>/dev/null & ;;
