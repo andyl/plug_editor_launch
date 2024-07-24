@@ -68,28 +68,38 @@ export PLUG_EDITOR=plug-edit:__FILE__:__LINE__:<editor>:<terminal_emulator>
 
 From the command line: 
 
-    $ # Make sure the XDG desktop file is installed and configured
-    $ cat ~/.local/share/applications/plug-editor.desktop 
-    $ xdg-mime query default x-scheme-handler/plug-edit 
-    $
-    $ # Test-run the protocol using xdg-open 
-    $ xdg-open plug-edit:$HOME/.bashrc:0:vscode 
-    $ xdg-open plug-edit:$HOME/.bashrc:0:vim:xterm 
-    $ xdg-open plug-edit:$HOME/.bashrc:0:neovim:kitty 
-    $
-    $ # Test-run using plug_editor_launch
-    $ which plug_editor_launch 
-    $ plug_editor_launch plug-edit:$HOME/.bashrc:0:vscode 
-    $ plug_editor_launch plug-edit:$HOME/.bashrc:0:vim:xterm 
-    $ plug_editor_launch plug-edit:$HOME/.bashrc:0:neovim:kitty 
+```
+# Make sure the XDG desktop file is installed and configured
+cat ~/.local/share/applications/plug-editor.desktop 
+xdg-mime query default x-scheme-handler/plug-edit 
+```
+
+```
+# Test-run the protocol using xdg-open 
+xdg-open plug-edit:$HOME/.bashrc:0:vscode 
+xdg-open plug-edit:$HOME/.bashrc:0:vim:xterm 
+xdg-open plug-edit:$HOME/.bashrc:0:neovim:kitty 
+```
+
+```
+# Test-run using plug_editor_launch
+which plug_editor_launch 
+plug_editor_launch plug-edit:$HOME/.bashrc:0:vscode 
+plug_editor_launch plug-edit:$HOME/.bashrc:0:vim:xterm 
+plug_editor_launch plug-edit:$HOME/.bashrc:0:neovim:kitty 
+```
 
 From the browser console: 
 
-    $ window.location.href = "plug-edit:/home/<yourid>/.bashrc:0:<youreditor>:<yourterminal>";
+```
+window.location.href = "plug-edit:/home/<yourid>/.bashrc:0:<youreditor>:<yourterminal>";
+```
 
 In an HTML doc: 
 
-    <a href="plug-edit:/home/<yourid>/.bashrc:0:<youreditor>:<yourterminal>">Launch Editor</a>
+```
+<a href="plug-edit:/home/<yourid>/.bashrc:0:<youreditor>:<yourterminal>">Launch Editor</a>
+```
 
 In the Phoenix development environment: follow the PhoenixLiveReload [directions][2].
 
