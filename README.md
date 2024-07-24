@@ -1,4 +1,4 @@
-# plug_editor_launch
+# PlugEditorLaunch
 
 Editor Launch for PhoenixLiveReload
 
@@ -54,9 +54,12 @@ The set of supported terminals and editors is defined in the
 
 ## Installing 
 
-First: 
-- clone the repo 
-- run the installer 'install.sh'
+Clone the repo and run the installer:
+
+```
+git clone https://github.com/andyl/plug_editor_launch 
+plug_editor_launch/install.sh 
+```
 
 Then add this line to your `~/.bashrc`: 
 
